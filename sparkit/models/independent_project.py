@@ -44,7 +44,7 @@ class IndependentProject(models.Model):
 		'independent_project_id', string="Updates", ondelete='cascade')
 
 	# Creating Project Name
-	@api.multi
+
 	def _get_name(self):
 		for r in self:
 			if r.community_id and r.project_subcategory_id:
@@ -54,7 +54,7 @@ class IndependentProject(models.Model):
 					r.name = r.community_id.name + ' - ' + r.project_subcategory_id.name + ' - Pre-2017'
 
 	# Calculates Number of Update Forms for the Independent Project
-	@api.multi
+
 	@api.depends('project_update_ids')
 	def _get_number(self):
 		for r in self:

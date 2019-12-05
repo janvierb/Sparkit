@@ -106,7 +106,7 @@ class SparkProject(models.Model):
 
 
 	#This function counts the number of disbursal requests made by the community
-	@api.multi
+
 	@api.depends('disbursal_request_ids')
 	def _get_number_disbursal_requests(self):
 		for r in self:
@@ -114,14 +114,14 @@ class SparkProject(models.Model):
 
 
 	# Calculates exchange rate when budget is formed
-	@api.multi
+
 	@api.depends('currency_id')
 	def _get_exchange_rate(self):
 		for r in self:
 			if r.currency_id:
 				r.exchange_rate = r.currency_id.rate
 
-	@api.multi
+
 	@api.depends('disbursal_ids')
 	def get_last_disbursement(self):
 		for r in self:
@@ -143,7 +143,7 @@ class SparkProject(models.Model):
 				r.outstanding_receipts_dollars = r.outstanding_receipts / r.exchange_rate
 
 	#Counts the total amount spent by communities if the budget source is equal to Spark
-	@api.multi
+
 	@api.depends('transaction_ids', 'budget_line_item_ids')
 	def _get_total_expenditure(self):
 		for r in self:
@@ -157,21 +157,21 @@ class SparkProject(models.Model):
 			r.left_to_disburse = r.grant_amount_local - r.total_disbursed
 
 	#Counts the number of disbursals made to the community
-	@api.multi
+
 	@api.depends('disbursal_ids')
 	def _get_number_disbursals(self):
 		for r in self:
 			r.number_disbursals = len(r.disbursal_ids)
 
 	#Sums the amount disbursed to the community (in the disbursals object)
-	@api.multi
+
 	@api.depends('disbursal_ids')
 	def _get_total_disbursed(self):
 		for r in self:
 			r.total_disbursed = sum(s.amount for s in r.disbursal_ids)
 
 	#Concatenates the community number and name to come up with a project name
-	@api.multi
+
 	@api.depends('community_id', 'category_id')
 	def _get_project_name(self):
 		for r in self:
@@ -186,40 +186,40 @@ class SparkProject(models.Model):
 			r.grant_surplus = r.grant_amount_local - r.spark_contribution
 
 	#Counts the total budgeted
-	@api.multi
+
 	@api.depends('budget_line_item_ids')
 	def _total(self):
 		for r in self:
 			r.total = sum(s.budgeted for s in r.budget_line_item_ids)
 
 	#Counts the total amount budgeted for Spark to provide
-	@api.multi
+
 	@api.depends('budget_line_item_ids')
 	def _spark_contribution(self):
 		for r in self:
 			r.spark_contribution = sum(s.budgeted for s in r.budget_line_item_ids if s.source == "spark")
 
-	@api.multi
+
 	@api.depends('budget_line_item_ids')
 	def _inkind_community_contribution(self):
 		for r in self:
 			r.inkind_community_contribution = sum(s.budgeted for s in r.budget_line_item_ids if s.source == "community_in_kind")
 
-	@api.multi
+
 	@api.depends('budget_line_item_ids')
 	def _cash_community_contribution(self):
 		for r in self:
 			r.cash_community_contribution = sum(s.budgeted for s in r.budget_line_item_ids if s.source == "community_cash")
 
 	#Counts the total amount budgeted for the Community to provide, including both inkind and cash
-	@api.multi
+
 	@api.depends('inkind_community_contribution', 'cash_community_contribution')
 	def _community_contribution(self):
 		for r in self:
 			r.community_contribution = r.inkind_community_contribution + r.cash_community_contribution
 
 	#Counts the total amount budgeted for another organization/government to provide
-	@api.multi
+
 	@api.depends('budget_line_item_ids')
 	def _other_contribution(self):
 		for r in self:
@@ -318,13 +318,13 @@ class ProjectBudgetItem(models.Model):
 	transaction_ids = fields.One2many('sparkit.transaction', 'budget_item_id',
 		string="Transactions", track_visibility='onchange')
 
-	@api.multi
+
 	@api.depends('transaction_ids')
 	def _actual(self):
 		for r in self:
 			r.actual = sum(s.amount for s in r.transaction_ids)
 
-	@api.multi
+
 	@api.depends('actual', 'budgeted')
 	def _get_proportion_spent(self):
 		for r in self:
@@ -418,19 +418,19 @@ class DisbursalRequest(models.Model):
 		attachment=True, track_visibility='onchange')
 	disbursal_request_hard_copy_name = fields.Char(string="Disbursal Request Hard Copy Name")
 
-	@api.multi
+
 	@api.depends('disbursal_ids')
 	def _get_disbursed(self):
 		for r in self:
 			r.disbursed_to_date = sum(s.amount for s in r.disbursal_ids)
 
-	@api.multi
+
 	@api.depends('amount_approved', 'disbursed_to_date')
 	def _get_balance(self):
 		for r in self:
 			r.balance = r.amount_approved - r.disbursed_to_date
 
-	@api.multi
+
 	@api.depends('disbursal_request_number')
 	def _compute_name(self):
 		for r in self:
@@ -465,7 +465,7 @@ class Disbursal(models.Model):
 		attachment=True, track_visibility='onchange')
 	disbursal_receipt_name = fields.Char(string="Disbursal Receipt Name")
 
-	@api.multi
+
 	@api.depends('request_number_id', 'request_amount')
 	def _get_disbursal_balance(self):
 		for r in self:

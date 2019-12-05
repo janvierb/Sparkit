@@ -9,14 +9,14 @@ class sparkit_cmty_name_change_wizard(models.TransientModel):
     community_ids = fields.Many2many('sparkit.community', string="Communities")
     new_name = fields.Char(string="Updated Name")
 
-    @api.multi
+
     def do_mass_update(self):
         self.ensure_one()
         # else:
         self.community_ids.write({'name': self.new_name})
         return True
 
-    @api.multi
+
     def do_reopen_form(self):
         self.ensure_one()
         return {'type': 'ir.actions.act_window',

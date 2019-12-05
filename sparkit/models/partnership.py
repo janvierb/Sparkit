@@ -52,7 +52,7 @@ class Partnership(models.Model):
 				if r.name:
 					r.mou_name = r.name + '_' + 'Memorandum_of_Understanding'
 
-	@api.multi
+
 	def _get_name(self):
 		for r in self:
 			if r.partner_id and r.community_id:

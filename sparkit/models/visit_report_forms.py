@@ -445,7 +445,7 @@ class VisitReportForm(models.Model):
 			if r.community_id.phase:
 				r.phase = r.community_id.phase_name
 
-	@api.multi
+
 	@api.depends('community_id')
 	def _get_step(self):
 		for r in self:
@@ -461,22 +461,22 @@ class VisitReportForm(models.Model):
 		return new_record
 
 	# Workflow start: planned visit
-	@api.multi
+
 	def action_planned(self):
 		self.state = 'planned'
 
 	# Planned -> Visited
-	@api.multi
+
 	def action_visited(self):
 		self.state = 'visited'
 
 	# Planned -> Cancelled
-	@api.multi
+
 	def action_cancelled(self):
 		self.state = 'cancelled'
 
 	# Visited -> Approved
-	@api.multi
+
 	def action_approved(self):
 		self.state = 'approved'
 
@@ -513,12 +513,12 @@ class IndependentMeeting(models.Model):
 		 string="Independent Meeting Duration",
 		 help="Please enter the duration of the independent meeting. Please round up to the nearest 15 mn interval.")
 	duration_minutes = fields.Integer(string="Duration Minutes", readonly=True,
-		compute = '_independent_mtg_duration_minutes')	
+		compute = '_independent_mtg_duration_minutes')
 	description = fields.Text(string="Description of Independent Meeting",
 		track_visibility='onchange')
 
 	# Creating Meeting Name
-	@api.multi
+
 	@api.depends('date', 'community_id')
 	def _get_name(self):
 		for r in self:

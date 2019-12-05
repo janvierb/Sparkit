@@ -242,7 +242,7 @@ class TransitionStrategy(models.Model):
 	static_activities_month24 = fields.Text(string="Static Activities Month 24",
 		default="Transition Strategy Check-in, Community Assessment")
 
-	@api.multi
+
 	@api.depends('community_name', 'community_number')
 	def _get_name(self):
 		for r in self:

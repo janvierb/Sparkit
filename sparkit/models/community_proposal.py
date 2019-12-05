@@ -60,7 +60,7 @@ class CommunityProposal(models.Model):
     # Q10. Bylaws
     bylaw_ids = fields.One2many('sparkit.communitybylaws', 'proposal_id', string="Bylaws")
 
-    @api.multi
+
     @api.depends('project_id')
     def _get_name(self):
         for r in self:

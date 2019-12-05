@@ -88,7 +88,7 @@ class OngoingCommunityAssessment(models.Model):
 		('3', 'Once a month'),
 		('4', 'Twice a month'),
 		('5', 'Weekly')],
-		select=True, string="In the past 6 months, how often has your community met? (independently of Spark)")	
+		select=True, string="In the past 6 months, how often has your community met? (independently of Spark)")
 	ce8_1 = fields.Text(string="Please describe what type of meetings these are.")
 	ce9_indmeetingsattend = fields.Selection(
 		[('999', "Commmunity does not meet"),
@@ -98,7 +98,7 @@ class OngoingCommunityAssessment(models.Model):
 		('4', 'Often'),
 		('5', 'Always'),
 		('99', "I don't know")],
-		select=True, string="In the past 6 months, how often have you or someone from your household attended (non-Spark) community meetings?")	
+		select=True, string="In the past 6 months, how often have you or someone from your household attended (non-Spark) community meetings?")
 	ce9_1 = fields.Selection(
 		[('0', "No one (Household does not attend community meetings/Community does not meet)"),
 		('1', 'Me (respondent)'),
@@ -106,7 +106,7 @@ class OngoingCommunityAssessment(models.Model):
 		('3', 'Child'),
 		('4', 'Household head (if respondent is not the household head)'),
 		('5', 'Other')],
-		select=True, string="From your household, who normally attends these meetings?")	
+		select=True, string="From your household, who normally attends these meetings?")
 	ce9_2_other = fields.Char(string="If other, please specify.")
 	ce10_indparticipation = fields.Selection(
 		[('999', "Does not attend meetings/community doesn't meet"),
@@ -116,7 +116,7 @@ class OngoingCommunityAssessment(models.Model):
 		('4', 'Often'),
 		('5', 'Always'),
 		('99', "I don't know")],
-		select=True, string="In the past 6 months, how often have you spoken in (non-Spark) community meetings?")	
+		select=True, string="In the past 6 months, how often have you spoken in (non-Spark) community meetings?")
 
 	#Civic Engagement - Spark-led Meetings
 	ce11_Sparkattend = fields.Selection(
@@ -127,7 +127,7 @@ class OngoingCommunityAssessment(models.Model):
 		('4', 'Often'),
 		('5', 'Always'),
 		('99', "I don't know")],
-		select=True, string="In the past 6 months, how often have you or someone from your household attended Spark-led community meetings?")	
+		select=True, string="In the past 6 months, how often have you or someone from your household attended Spark-led community meetings?")
 	ce11_1 = fields.Selection(
 		[('0', "No one (Household does not attend community meetings/Community does not meet)"),
 		('1', 'Me (respondent)'),
@@ -135,7 +135,7 @@ class OngoingCommunityAssessment(models.Model):
 		('3', 'Child'),
 		('4', 'Household head (if respondent is not the household head)'),
 		('5', 'Other')],
-		select=True, string="From your household, who normally attends these Spark-led meetings?")	
+		select=True, string="From your household, who normally attends these Spark-led meetings?")
 	ce11_1_other = fields.Char(string="If other, please specify.")
 	ce12_Sparkparticipation = fields.Selection(
 		[('999', "Does not attend meetings/community doesn't meet"),
@@ -145,14 +145,14 @@ class OngoingCommunityAssessment(models.Model):
 		('4', 'Often'),
 		('5', 'Always'),
 		('99', "I don't know")],
-		select=True, string="In the past 6 months, how often have you spoken in Spark-led community meetings?")	
+		select=True, string="In the past 6 months, how often have you spoken in Spark-led community meetings?")
 	cohesion13_ideasopinions = fields.Selection(
 		[('1', 'Never'),
 		('2', 'Rarely'),
 		('3', 'Sometimes'),
 		('4', 'Often'),
 		('5', 'Always')],
-		select=True, string="Have your ideas been taken into consideration by your community leaders during meetings?")	
+		select=True, string="Have your ideas been taken into consideration by your community leaders during meetings?")
 	ce14_decisioninvolvement = fields.Selection(
 		[('1', 'No'),
 		('3', 'Once'),
@@ -177,7 +177,7 @@ class OngoingCommunityAssessment(models.Model):
 		('3', 'Once'),
 		('5', 'More than once')],
 		select=True, string="Are you involved in groups/committees in your community?")
-	ce18_1 = fields.Text(string="If yes, please describe.")	
+	ce18_1 = fields.Text(string="If yes, please describe.")
 
 	#Advocacy
 	advocacy19 = fields.Integer(string="In the past 6 months, how many times have you or someone in your community approached an outside organization for support?")
@@ -186,7 +186,7 @@ class OngoingCommunityAssessment(models.Model):
 	advocacy21_who = fields.Char(string="Who did you approach?")
 
 	#Finances
-	savings_methods = fields.Many2many('sparkit.savingsmethods', string="Which of the following methods is your household using to save?")	
+	savings_methods = fields.Many2many('sparkit.savingsmethods', string="Which of the following methods is your household using to save?")
 	savings_other = fields.Text(string="If other, please specify.")
 	money_in_account = fields.Integer(string="Approximately how much are you saving each month?")
 	finance20_cmtybankaccount = fields.Selection([(0, 'No'), (1, 'Yes'), (99, "I don't know")], string = "Does your community have a village bank account?")
@@ -262,7 +262,7 @@ class OngoingCommunityAssessment(models.Model):
 	finance30_2describe = fields.Text(string="If yes, please describe the training you received.")
 
 	#Cross-sectoral - Items
-	cs31_itemsowned = fields.Many2many('sparkit.crosssectoritem', string="How many of the following do you own?")		
+	cs31_itemsowned = fields.Many2many('sparkit.crosssectoritem', string="How many of the following do you own?")
 	cs31_1_numitemsowned = fields.Integer(string="Total # of items community member owns")
 
 	#Cross-sectoral - Animals
@@ -424,7 +424,7 @@ class OngoingCommunityAssessment(models.Model):
 
 
 
-	@api.multi
+
 	@api.depends('community_id', 'oca_number')
 	def _get_name(self):
 		for r in self:
@@ -505,7 +505,7 @@ class Communalprojects(models.Model):
 	_name = 'sparkit.communalprojects'
 
 	name = fields.Char(string="Name")
-	code = fields.Integer(string="Code")	
+	code = fields.Integer(string="Code")
 
 
 class Householdcontribution(models.Model):

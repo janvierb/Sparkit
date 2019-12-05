@@ -270,7 +270,7 @@ class Community(models.Model):
     indicator1_description = fields.Text(string = "Tracking Indicator1-Description of how/why Indicator 1 was selected and how community will keep track of it.",
                                       help="Please give a brief description of how this indicator was selected and how community will keep track of the indicator.",
                                       track_visibility='onchange')
-	
+
     indicator2_description = fields.Text(string = "Tracking Indicator2-Description of how/why Indicator 2 was selected and how community will keep track of it.",
                                       help="Please give a brief description of how this indicator was selected and how community will keep track of the indicator.",
                                       track_visibility='onchange')
@@ -884,7 +884,7 @@ class Community(models.Model):
                                           help="Automatically marked as completed when Graduation is reported on the visit report form.")
 
 
-    @api.multi
+
     @api.depends('cvrf_ids')
     def _get_number_planning_visits(self):
         for r in self:
@@ -895,7 +895,7 @@ class Community(models.Model):
                         total = total + 1
                 r.number_planning_visits = total
 
-    @api.multi
+
     @api.depends('ivrf_ids')
     def _get_number_implementation_visits(self):
         for r in self:
@@ -906,7 +906,7 @@ class Community(models.Model):
                         total = total + 1
                 r.number_implementation_visits = total
 
-    @api.multi
+
     @api.depends('pivrf_ids')
     def _get_number_pi_visits(self):
         for r in self:
@@ -918,14 +918,14 @@ class Community(models.Model):
                 r.number_pi_visits = total
 
 
-    @api.multi
+    
     @api.depends('num_hh_community', 'country_id')
     def _get_num_ppl_community(self):
         for r in self:
             if r.country_id and r.num_hh_community:
                 r.num_ppl_community = r.country_id.num_ppl_per_household * r.num_hh_community
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_graduation_preparation_completed(self):
         for r in self:
@@ -936,7 +936,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.graduation_preparation_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_graduation_completed(self):
         for r in self:
@@ -947,7 +947,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.graduation_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_transition_plan_review_completed(self):
         for r in self:
@@ -958,7 +958,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.transition_plan_review = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_cmty_facilitator_followup(self):
         for r in self:
@@ -969,7 +969,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.cmty_facilitator_followup = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_advocacy_training_comleted(self):
         for r in self:
@@ -980,7 +980,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.advocacy_training_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_future_goal_setting_completed(self):
         for r in self:
@@ -991,7 +991,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.future_goal_setting_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_goals_measuring_success_review_completed(self):
         for r in self:
@@ -1002,7 +1002,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.goals_measuring_success_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_transition_strategy_review2_completed(self):
         for r in self:
@@ -1013,7 +1013,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.transition_strategy_review2_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_leadership_review2_completed(self):
         for r in self:
@@ -1024,7 +1024,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.leadership_review2_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_bylaw_review2_completed(self):
         for r in self:
@@ -1035,7 +1035,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.bylaw_review2_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_risk_mitigation_review2_completed(self):
         for r in self:
@@ -1046,7 +1046,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.risk_mitigation_review2_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_operational_plan_review_completed(self):
         for r in self:
@@ -1057,7 +1057,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.operational_plan_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_transition_strategy_activity_completed(self):
         for r in self:
@@ -1068,7 +1068,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.transition_strategy_activity_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_cmty_facilitation_training_completed(self):
         for r in self:
@@ -1079,7 +1079,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.cmty_facilitation_training_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_advocacy_report_writing_completed(self):
         for r in self:
@@ -1090,7 +1090,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.advocacy_report_writing_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_bylaw_review_completed(self):
         for r in self:
@@ -1101,7 +1101,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.bylaw_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_leadership_review_completed(self):
         for r in self:
@@ -1112,7 +1112,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.leadership_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_risk_mitigation_review_completed(self):
         for r in self:
@@ -1123,7 +1123,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.risk_mitigation_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_imp_plan_review(self):
         for r in self:
@@ -1134,7 +1134,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.imp_plan_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_followup_disbursement_completed(self):
         for r in self:
@@ -1145,7 +1145,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.followup_disbursement = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_banking_training_review_completed(self):
         for r in self:
@@ -1156,7 +1156,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.banking_training_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_trs_acctb_review_completed(self):
         for r in self:
@@ -1167,7 +1167,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.trs_acctb_review_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_first_disbursement_completed(self):
         for r in self:
@@ -1178,7 +1178,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.first_disbursement_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_grant_agreement_completed(self):
         for r in self:
@@ -1189,7 +1189,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.grant_agreement_signing = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_sms_training_completed(self):
         for r in self:
@@ -1200,7 +1200,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.sms_training_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_record_keeping_training_completed(self):
         for r in self:
@@ -1211,7 +1211,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.record_keeping_training_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_grant_disbursal_training_completed(self):
         for r in self:
@@ -1234,7 +1234,7 @@ class Community(models.Model):
             if r.govt_registration_number:
                 r.cmty_registered_with_govt = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_trnsprncy_acctblty_traning_completed(self):
         for r in self:
@@ -1245,7 +1245,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.trnsprncy_acctblty_traning_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_cmty_engagement_plan_completed(self):
         for r in self:
@@ -1256,7 +1256,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.cmty_engagement_plan_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_bylaws_completed(self):
         for r in self:
@@ -1267,7 +1267,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.developing_bylaws_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_risk_assessment_completed(self):
         for r in self:
@@ -1278,7 +1278,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.risk_assessment_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_setting_target_numbers_completed(self):
         for r in self:
@@ -1289,7 +1289,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.setting_target_numbers_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_data_collection_plan_completed(self):
         for r in self:
@@ -1300,7 +1300,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.developing_data_collection_plan = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_operational_budget_completed(self):
         for r in self:
@@ -1312,7 +1312,7 @@ class Community(models.Model):
                     r.developing_operational_budget_completed = True
 
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_operational_action_plan_completed(self):
         for r in self:
@@ -1323,7 +1323,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.developing_operational_action_plan_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_implementation_budget_completed(self):
         for r in self:
@@ -1334,7 +1334,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.developing_implementation_budget_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_understanding_budgeting_completed(self):
         for r in self:
@@ -1345,7 +1345,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.understanding_budgeting_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_facilitation_training_completed(self):
         for r in self:
@@ -1356,7 +1356,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.facilitation_training_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_implementation_action_plan_completed(self):
         for r in self:
@@ -1367,7 +1367,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.developing_implementation_action_plan_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_banking_training_completed(self):
         for r in self:
@@ -1378,7 +1378,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.banking_training = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_developing_savings_group_completed(self):
         for r in self:
@@ -1389,7 +1389,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.devloping_savings_groups = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_introducing_prop_dev_completed(self):
         for r in self:
@@ -1400,7 +1400,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.introducing_prop_dev = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_govt_registration_completed(self):
         for r in self:
@@ -1411,7 +1411,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.govt_registration_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_feasibility_study_completed(self):
         for r in self:
@@ -1422,7 +1422,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.feasibility_study_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_brainstorming_pathways_completed(self):
         for r in self:
@@ -1433,7 +1433,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.brainstorming_pathways_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_understanding_goals_completed(self):
         for r in self:
@@ -1444,7 +1444,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.understanding_goals_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_brainstorming_goals_completed(self):
         for r in self:
@@ -1455,7 +1455,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.brainstorming_goals_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_assessing_past_progress_completed(self):
         for r in self:
@@ -1466,7 +1466,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.assessing_past_progress_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_defining_success_completed(self):
         for r in self:
@@ -1477,7 +1477,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.defining_success_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def check_consensus_building_completed(self):
         for r in self:
@@ -1488,7 +1488,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.consensus_building_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_gender_empowerment_completed(self):
         for r in self:
@@ -1499,7 +1499,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.gender_empowerment_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_ground_rules_completed(self):
         for r in self:
@@ -1510,7 +1510,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.ground_rules_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_strong_leaders_completed(self):
         for r in self:
@@ -1521,7 +1521,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.strong_leaders_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_leadership_election(self):
         for r in self:
@@ -1532,7 +1532,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.leadership_election_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_vision_statement_completed(self):
         for r in self:
@@ -1543,7 +1543,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.vision_statement_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_partnership_expectations_completed(self):
         for r in self:
@@ -1554,7 +1554,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.partnership_expectations_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_partnership_agreement_signed(self):
         for r in self:
@@ -1565,7 +1565,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.partnership_agreement_signed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_introducing_spark_completed(self):
         for r in self:
@@ -1576,7 +1576,7 @@ class Community(models.Model):
                 if activity1 or activity2 or activity3:
                     r.introducing_spark_completed = True
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _check_community_mapping_completed(self):
         for r in self:
@@ -1685,14 +1685,14 @@ class Community(models.Model):
                 if r.pathways_ideas >= r.workflow_config_id.min_pathways_brainstormed:
                     r.is_min_pathways_brainstormed = True
 
-    @api.multi
+
     @api.depends('transition_strategy_ids')
     def check_transition_strategy(self):
         for r in self:
             if r.transition_strategy_ids:
                 r.is_transition_strategy_completed = True
 
-    @api.multi
+
     @api.depends('oca_ids')
     def check_ocas_completed(self):
         for r in self:
@@ -1720,38 +1720,38 @@ class Community(models.Model):
             if r.project_description:
                 r.is_project_description_not_null = True
 
-    @api.multi
+
     @api.depends('spark_project_ids')
     def _check_project_created(self):
         for r in self:
             if r.spark_project_ids:
                 r.is_project_created = True
 
-    @api.multi
+
     def check_pm_approved_goal_setting(self):
         self.pm_approved_goal_setting = True
 
-    @api.multi
+
     def check_pm_approved_partnership(self):
         self.has_pm_approved_partnership = True
 
-    @api.multi
+
     def check_pm_approved_proposal(self):
         self.has_pm_approved_proposal = True
 
-    @api.multi
+
     def check_pm_approved_project_launch(self):
         self.is_imp_action_plan_completed = True
 
-    @api.multi
+
     def check_pm_approved_ta_workplan(self):
         self.is_ta_workplan_approved = True
 
-    @api.multi
+
     def check_pm_verified_transition_strategy_complete(self):
         self.are_transition_strategy_activities_completed = True
 
-    @api.multi
+
     @api.depends('spark_project_ids.budget_line_item_ids')
     def _check_budget_created(self):
         for r in self:
@@ -1773,7 +1773,7 @@ class Community(models.Model):
             if r.goals_selected:
                 r.is_goals_selected_not_null = True
 
-    @api.multi
+
     @api.depends('community_leader_ids')
     def check_num_elected_leaders(self):
         for r in self:
@@ -1782,7 +1782,7 @@ class Community(models.Model):
                             len(r.community_leader_ids) <= r.workflow_config_id.communitybldg_max_elected_leaders):
                     r.num_leaders_requirement = True
 
-    @api.multi
+
     @api.depends('community_leader_ids', 'workflow_config_id.communtiybldg_min_percent_female')
     def check_gender_elected_leaders(self):
         for r in self:
@@ -1790,7 +1790,7 @@ class Community(models.Model):
                 if len(r.community_leader_ids.search([('gender', '=', 'female'), ('community_id.community_number', '=', r.community_number)])) >= (r.workflow_config_id.communtiybldg_min_percent_female * len(r.community_leader_ids)):
                     r.leaders_gender_requirement = True
 
-    @api.multi
+
     @api.depends('community_leader_ids')
     def _compute_number_female_leaders(self):
         for r in self:
@@ -1802,28 +1802,28 @@ class Community(models.Model):
                 r.number_female_leaders = total
 
 
-    @api.multi
+
     @api.depends('community_leader_ids')
     def _compute_total_leaders(self):
         for r in self:
             if r.community_leader_ids:
                 r.total_leaders = len(r.community_leader_ids)
 
-    @api.multi
+
     @api.depends('community_facilitator_ids')
     def check_cmty_facilitators_identified(self):
         for r in self:
             if r.community_facilitator_ids:
                 r.cmty_facilitators_identified = True
 
-    @api.multi
+
     @api.depends('community_leader_ids')
     def check_community_leaders(self):
         for r in self:
             if r.community_leader_ids:
                 r.is_cmty_leaders_entered = True
 
-    @api.multi
+
     @api.depends('number_signed_grant_agreement', 'workflow_config_id')
     def check_min_pg_signed_grant_agreement(self):
         for r in self:
@@ -1832,14 +1832,14 @@ class Community(models.Model):
                     r.min_pg_signed_agreement = True
 
 
-    @api.multi
+
     @api.depends('number_signed_grant_agreement')
     def check_pg_signed_grant_agreement(self):
         for r in self:
             if r.number_signed_grant_agreement:
                 r.pg_signed_agreement = True
 
-    @api.multi
+
     @api.depends('number_signed_exit_agreement')
     def check_exit_agreement_signed(self):
         for r in self:
@@ -1847,7 +1847,7 @@ class Community(models.Model):
                 if r.number_signed_exit_agreement >= r.num_hh_in_planning_group * r.workflow_config_id.percent_pg_signed_exitagreement:
                     r.exit_agreement_signed = True
 
-    @api.multi
+
     @api.depends('workflow_config_id', 'num_hh_community')
     def check_hh_requirement_met(self):
         for r in self:
@@ -1869,20 +1869,20 @@ class Community(models.Model):
             if r.description:
                 r.is_community_description_filled = True
 
-    @api.multi
+
     @api.depends('independent_project_ids')
     def _get_number_ind_projects(self):
         for r in self:
             r.total_independent_projects = len(r.independent_project_ids)
 
-    @api.multi
+
     @api.depends('savings_group_ids')
     def _get_number_hh_savings_group(self):
         for r in self:
             if r.savings_group_ids:
                 r.number_hh_savings_group = sum(s.number_hh for s in r.savings_group_ids)
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def _get_visit_date(self):
         for r in self:
@@ -1895,7 +1895,7 @@ class Community(models.Model):
                     next_visit_date = datetime.strptime((str(r.next_visit_date)), '%Y-%m-%d').date()
                     r.next_visit_date_week = next_visit_date.strftime("%W")
 
-    @api.multi
+
     @api.depends('vrf_ids')
     def get_grad_metrics(self):
         for r in self:
@@ -1961,14 +1961,14 @@ class Community(models.Model):
     ##Workflow States
 
     # Workflow Start: Community Identification - Baseline
-    @api.multi
+
     def action_community_identification(self):
         self.phase = 'community_identification'
         self.state = 'community_identification'
 
     # Baseline - Introductions
     # Sets state from community_identification to introductions
-    @api.multi
+
     def action_introductions(self):
         # First Checks to see if workflow_config_id.is_oca1_completed is True
         # and if is_oca_completed is False
@@ -1981,7 +1981,7 @@ class Community(models.Model):
 
     # Introductions -> Community Building
     # Sets state to partnership, phase to planning, and is_partnered/is_active to true
-    @api.multi
+
     def action_partnership(self):
         # First checks if community Description is filled, because this is always required
         if self.is_community_description_filled is False:
@@ -2301,4 +2301,3 @@ class SpecialCases(models.Model):
 
     name = fields.Char(string="Special Case", required=True)
     community_ids = fields.Many2one('sparkit.community', string="Communities")
-	

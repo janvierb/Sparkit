@@ -48,7 +48,7 @@ class ProgramReview(models.Model):
             if r.quarter:
                 r.quarter_name = dict(self.fields_get(allfields=['quarter'])['quarter']['selection'])[self.quarter]
 
-    @api.multi
+
     def _get_name(self):
         for r in self:
             if r.community_id and r.quarter_name:

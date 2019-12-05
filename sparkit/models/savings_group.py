@@ -60,14 +60,14 @@ class SavingsGroup(models.Model):
 	savings_group_update_ids = fields.One2many('sparkit.savingsgroupupdate',
 		'savings_group_id', string="Updates")
 
-	@api.multi
+
 	def _get_name(self):
 		for r in self:
 			if r.community_id:
 				r.name = r.community_id.name + ' - SG ' + str(r.start_date)
 
 	#Function to return the Latest SG Update ID
-	@api.multi
+
 	@api.depends('savings_group_update_ids')
 	def _get_latest(self):
 		for r in self:
@@ -76,7 +76,7 @@ class SavingsGroup(models.Model):
 				if r.latest_id:
 					r.last_updated = r.latest_id.date
 
-	@api.multi
+
 	@api.depends('latest_id')
 	def get_total_saved(self):
 		for r in self:
