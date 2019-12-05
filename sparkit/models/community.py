@@ -1644,7 +1644,7 @@ class Community(models.Model):
             if r.partnership_agreement:
                 r.is_partnership_agreement_uploaded = True
 
-    @api.one
+
     @api.depends('phase')
     def _get_phase_name(self):
         for r in self:
@@ -1663,7 +1663,7 @@ class Community(models.Model):
             if r.indicator1 and r.indicator2 and r.indicator3:
                 r.goal_indicators_selected = True
 
-    @api.one
+
     @api.depends('state')
     def _get_state_name(self):
         for r in self:

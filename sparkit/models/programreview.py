@@ -41,7 +41,7 @@ class ProgramReview(models.Model):
     country = fields.Char(compute='_get_country', readonly=True)
     country_region = fields.Char(compute='_get_region', readonly=True)
 
-    @api.one
+
     @api.depends('quarter')
     def _get_quarter_name(self):
         for r in self:

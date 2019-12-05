@@ -357,7 +357,7 @@ class VisitReportForm(models.Model):
 				next_visit_date = datetime.strptime((str(r.visit_date)), '%Y-%m-%d').date()
 				r.visit_date_week = next_visit_date.strftime("%W")
 
-	@api.one
+
 	@api.depends('phase')
 	def _get_phase_name(self):
 		for r in self:
