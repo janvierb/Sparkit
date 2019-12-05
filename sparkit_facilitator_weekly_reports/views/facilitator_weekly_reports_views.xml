@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="sparkit_fwr_list">
+      <field name="name">sparkit.fwr.list</field>
+      <field name="model">sparkit.facilitator_weekly_reports</field>
+      <field name="arch" type="xml">
+        <tree default_order="write_date desc">
+          <field name="created_date"/>
+          <field name="user_id"/>
+          <field name="program_manager_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="sparkit_fwr_form">
+      <field name="name">sparkit.fwr.form</field>
+      <field name="model">sparkit.facilitator_weekly_reports</field>
+      <field name="arch" type="xml">
+        <form string="Facilitator Weekly Report Form">
+          <sheet>
+            <group colspan="4" col="4" class="no_style">
+              <group colspan="2" col="2">
+                <field name="name" invisible="1"/>
+                <field name="user_id" options="{'no_create': True}"/>
+                <field name="program_manager_id" options="{'no_create': True}"/>
+                <field name="created_date" invisible="1"/>
+                <field name="highlights"/>
+                <field name="challenges"/>
+                <field name="ideas"/>
+              </group>
+              <group colspan="2" col="2">
+                <field name="questions"/>
+                <field name="suggestions"/>
+                <field name="ideas_team_mtg"/>
+                <field name="next_steps" groups="sparkit.program_manager"/>
+              </group>
+            </group>
+          </sheet>
+            <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="fwr_list_action">
+      <field name="name">Facilitator Weekly Reports</field>
+      <field name="res_model">sparkit.facilitator_weekly_reports</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first VRF!</p>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fwr_list_action_facs">
+      <field name="name">Facilitator Weekly Reports</field>
+      <field name="res_model">sparkit.facilitator_weekly_reports</field>
+      <field name="domain">[('user_id', '=', uid)]</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first Facilitator Weekly Report!</p>
+      </field>
+    </record>
+
+    <menuitem id="facilitator_weekly_reports_menu_root" name="Facilitator Weekly Reports"/>
+
+    <menuitem name="Facilitator Weekly Reports"
+        id="sparkit_facilitator_weekly_reports.menu_root_fac"
+        groups="sparkit.facilitator"
+        action="fwr_list_action_facs"
+        parent="facilitator_weekly_reports_menu_root" sequence="1" />
+
+    <menuitem name="All Weekly Reports"
+        id="sparkit_facilitator_weekly_reports.menu_root_global"
+        groups="sparkit.m_e_user"
+        action="fwr_list_action" 
+        parent="facilitator_weekly_reports_menu_root" sequence="2" />
+
+  </data>
+</odoo>

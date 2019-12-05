@@ -1,0 +1,423 @@
+<odoo>
+	<data>
+
+		<!-- Visit Report Forms - Base (Not actually used)-->
+  		<record model="ir.ui.view" id="visit_report_form_view">
+  			<field name="name">visitreport.form</field>
+  			<field name="model">sparkit.vrf</field>
+  			<field name="arch" type="xml">
+  				<form string="Visit Report Form">
+						<!--<header>
+							<button name="visited" type="workflow"
+								string="Community Visited"
+								states="planned"
+								class="oe_highlight"/>
+							<button name="cancelled" type="workflow"
+								string="Community Visit Cancelled"
+								states="planned"
+								class="oe_highlight"/>
+							<button name="approved" type="workflow"
+								string="Report Approved"
+								states="visited"
+								class="oe_highlight"/>
+							<field name="state" widget="statusbar"
+								statusbar_visible="planned, visited, approved"
+								attrs="{'invisible': [('state', '=', 'cancelled')]}"/>
+						</header>-->
+  					<sheet>
+							<!--<button name="planned" type="workflow"
+								string="Back to Planned"
+								attrs="{'invisible': [('state', 'not in', ['cancelled', 'visited'])]}"/>-->
+  						<group colspan="4" col="4" string="Information" class="no_style">
+  							<group colspan="2">
+									<field name="state"/>
+									<field name="name" invisible="1"/>
+  								<field name="community_id"
+  									options="{'no_create': True}"/>
+									<field name="visit_type"/>
+									<field name="is_group_tracking_enabled" invisible="1"/>
+									<field name="facilitator_id" options="{'no_create': True}"/>
+									<field name="co_facilitator_id" options="{'no_create': True}"/>
+									<field name="implementation_partner_facilitator_id" />
+									<field name="program_manager_id"/>
+									<field name="m_e_assistant_id"/>
+									<field name="created_on_odoo" invisible="1"/>
+  							</group>
+  							<group colspan="2">
+  								<field name="visit_date"/>
+									<field name="next_visit_date"
+										attrs="{'readonly': [('state', '=', 'approved')]}"
+										options="{'no_create': True}"/>
+  								<field name="phase"
+											attrs="{'required': [('state', '=', 'visited')]}"/>
+									<field name="phase_name" invisible="1"/>
+									<field name="step_id" widget="selection"
+										domain="[('phase_id.name', '=', phase_name)]"/>
+										<!--attrs="{'required': [('state', '=', 'visited')]}"-->
+									<field name="form_type" invisible="1"/>
+									<field name="visit_date_week" invisible="1"/>
+  							</group>
+  						</group>
+							<group colspan="4" col="4" string="Missed Meeting/Phone Calls" class="no_style"
+								attrs="{'invisible': [('state', '!=', 'cancelled')]}">
+								<group colspan="2">
+									<field name="missed_meeting_reason" widget="selection"/>
+									<field name="missed_meeting_text"/>
+								</group>
+								<group colspan="2">
+									<field name="phone_call"/>
+									<field name="phone_call_desc"/>
+								</group>
+							</group>
+  						<notebook attrs="{'invisible': ['|', ('visit_type', '=', 'no_meeting_visit'),
+								('state', 'not in', ['visited', 'approved'])]}">
+  							<page string="Form">
+								<group colspan="4" col="4" string="Attendance and Speaker Information" class="no_style">
+									<group colspan="2">
+										<field name="attendance_females"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="attendance_males"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="attendance_total"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="attendance_female_leaders"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="attendance_male_leaders"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="attendance_first_time"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="number_members_showing_leadership"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<group colspan="2">
+										<field name="speakers_female"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="speakers_male"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="speakers_total"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="speakers_first_time"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<!--     MARGINAL GROUP TRACKING START  -->
+									<seperator/>
+									<group colspan="4" col="4" class="no_style"
+											attrs="{'invisible': [('is_group_tracking_enabled', '=', False)]}">
+										<group colspan="2">
+											<field name="attendance_type1_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance1_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type2_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance2_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type3_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance3_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type4_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance4_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type5_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance5_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type6_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance6_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance_type7_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="attendance7_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										</group>
+										<group colspan="2">
+											<field name="speakers_type1_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers1_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type2_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers2_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type3_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers3_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type4_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers4_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type5_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers5_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type6_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers6_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers_type7_id" widget="selection"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>
+											<field name="speakers7_total"
+												attrs="{'readonly': [('state', '=', 'approved')]}"/>																								
+										</group>
+									</group>
+									<!-- MARGINAL GROUP TRACKING END  -->
+								</group>
+								<group colspan="4" col="4" string="Meeting Report" class="no_style">
+									<group colspan="2">
+										<field name="activity1_id" widget="selection"
+											domain="[('step_id', '=', step_id)]"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity1_accomplished"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity1_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity2_id" widget="selection"
+											domain="[('step_id', '=', step_id)]"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity2_accomplished"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity2_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity3_id" widget="selection"
+											domain="[('step_id', '=', step_id)]"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity3_accomplished"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="activity3_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="visit_duration"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="travel_duration"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<group colspan="2">
+										<field name="meeting_started_on_time"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="meeting_late_reason"
+											widget="selection"
+											attrs="{'readonly': [('state', '=', 'approved')],
+												'invisible': [('meeting_started_on_time', '=', 'yes')]}"/>
+											<!-- Disabling required for import-->
+											<!--	'required': [('meeting_started_on_time', '=', 'no')]}"-->
+										<field name="meeting_started_on_time_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="cmty_set_agenda"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="conflicts_in_meeting"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="conflicts_in_meeting_resolved"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="conflicts_in_meeting_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<field name="cmty_meeting_photo" filename="cmty_meeting_photo_name"/>
+									<field name="cmty_meeting_photo_name" invisible="1"/>
+									<field name="attendance_relm_verified" groups="sparkit.m_e_user"
+										attrs="{'required': [('state', '=', 'approved')]}"/>
+								</group>
+								<group colspan="4" col="4" string="Accountability and Transparency"
+									class="no_style"
+									attrs="{'invisible': [('phase', '!=', 'post_implementation'), ('phase', '!=', 'implementation')]}">
+									<group colspan="2">
+										<field name="leadership_reported_finances"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="leadership_presented_updated_cashbook"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="leadership_presented_accurate_cashbook"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<group colspan="2">
+										<field name="knowledge_of_community_funds"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="updated_accurate_receipts"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<group colspan="2"
+										attrs="{'invisible': [('phase', '!=', 'post_implementation')]}">
+										<field name="any_new_risks"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="any_new_risks_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<group colspan="2"
+										attrs="{'invisible': [('phase', '!=', 'post_implementation')]}">
+										<field name="records_updated"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="records_updated_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+									<field name="financial_update_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+								</group>
+								<group colspan="4" col="4" string="Community Report" class="no_style">
+									<group colspan="2">
+										<field name="homework_type"
+												attrs="{'invisible': [('phase', '!=', 'planning')],
+													'readonly': [('state', '=', 'approved')]}"/>
+										<field name="homework_attempted_completed"
+												attrs="{'invisible': [('phase', '!=', 'planning')],
+												'readonly': [('state', '=', 'approved')]}"/>
+										<field name="homework_desc"
+												attrs="{'invisible': [('phase', '!=', 'planning')],
+												'readonly': [('state', '=', 'approved')]}"/>
+										<field name="cmty_meeting_frequency"
+												attrs="{'invisible': [('phase', '!=', 'post_implementation')],
+												'readonly': [('state', '=', 'approved')]}"/>
+										<field name="cmty_reported_conflicts"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="cmty_reported_conflicts_resolved"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+										<field name="cmty_reported_conflicts_desc"
+											attrs="{'readonly': [('state', '=', 'approved')]}"/>
+									</group>
+								</group>
+								<group colspan="4" col="2">
+									<field name="community_highlights"
+										attrs="{'readonly': [('state', '=', 'approved')]}"
+										placeholder="Community highlights are stories that either happen during a community meeting or are learned about during a facilitators' visit to the community that would be interesting to highlight externally. For example: 'A community member named Beatrice used a loan from the savings and loans association to start a small restaurant that community members visit after every community meeting' or 'Esther, a woman who is often quiet at community meetings, volunteered to lead the community through a community building exercise today where community members gathered in a circle and sang a local song.'
+										"/>
+								</group>
+								<group colspan="4" col="4" string="Next Meeting" class="no_style">
+									<group colspan="2">
+										<field name="next_meeting_activity1_id"
+											attrs="{'readonly': [('state', '=', 'approved')]}"
+											options="{'no_create': True}"/>
+										<field name="next_meeting_activity2_id"
+											attrs="{'readonly': [('state', '=', 'approved')]}"
+											options="{'no_create': True}"/>
+										<field name="next_meeting_activity3_id"
+											attrs="{'readonly': [('state', '=', 'approved')]}"
+											options="{'no_create': True}"/>
+									</group>
+								</group>
+							</page>
+  						</notebook>
+  					</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers"/>
+							<field name="message_ids" widget="mail_thread"/>
+						</div>
+  				</form>
+  			</field>
+  		</record>
+
+  		<!--All VRFs List View -->
+  		<record model="ir.ui.view" id="visit_report_tree">
+  			<field name="name">visitreport.tree</field>
+  			<field name="model">sparkit.vrf</field>
+  			<field name="arch" type="xml">
+  				<tree string="Visit Report Forms" default_order="visit_date desc">
+  					<field name="community_id" />
+  					<field name="facilitator_id" />
+						<field name="phase"/>
+						<field name="step_id"/>
+						<field name="visit_date"/>
+						<field name="next_visit_date"/>
+  				</tree>
+  			</field>
+  		</record>
+
+  		<!--All Visit Report Form Actions-->
+  		<record model="ir.actions.act_window" id="visit_report_list_action">
+  			<field name="name">Visit Report Forms</field>
+  			<field name="res_model">sparkit.vrf</field>
+  			<field name="view_type">form</field>
+  			<field name="view_mode">tree,form</field>
+  			<field name="context">{'default_created_on_odoo':'True'}</field>
+  			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">Create the first VRF!</p>
+  			</field>
+  		</record>
+
+			<record model="ir.ui.view" id="spark_vrfs_default_search">
+				<field name="name">sparkproject.search</field>
+				<field name="model">sparkit.vrf</field>
+				<field name="arch" type="xml">
+					<search string="Visit Report Form(s)">
+						<field name="community_name"/>
+						<field name="community_number"/>
+						<field name="facilitator_id"/>
+						<group expand="0" string="Group By">
+							<filter name="by_community" string="Community" context="{'group_by': 'community_id'}" help="Community"/>
+							<filter name="by_facilitator" string="Facilitator" context="{'group_by':'facilitator_id'}" help="Facilitator"/>
+						</group>
+					</search>
+				</field>
+			</record>
+
+
+  		<!-- Groups List View-->
+  		<record model="ir.ui.view" id="grouptracking_tree">
+  			<field name="name">grouptracking.tree</field>
+  			<field name="model">sparkit.grouptracking</field>
+  			<field name="arch" type="xml">
+  				<tree string="Groups" editable="bottom">
+  					<field name="name"/>
+  				</tree>
+  			</field>
+  		</record>
+
+  		<!--Groups Form Actions-->
+  		<record model="ir.actions.act_window" id="grouptracking_list_action">
+  			<field name="name">Groups</field>
+  			<field name="res_model">sparkit.grouptracking</field>
+  			<field name="view_type">form</field>
+  			<field name="view_mode">tree,form</field>
+  			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">Create the first groups!</p>
+  			</field>
+  		</record>
+
+
+			<!-- Missed Meetings List View-->
+			<record model="ir.ui.view" id="missedmeetingreason_tree">
+				<field name="name">missedmeetingreason.tree</field>
+				<field name="model">sparkit.missedmeetingreason</field>
+				<field name="arch" type="xml">
+					<tree string="Reasons for Missed Meetings" editable="bottom">
+						<field name="name"/>
+						<field name="type"/>
+					</tree>
+				</field>
+			</record>
+
+			<!-- Missed Meetings Actions-->
+			<record model="ir.actions.act_window" id="missedmeetingreason_list_action">
+				<field name="name">Reasons for Missed Meetings</field>
+				<field name="res_model">sparkit.missedmeetingreason</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree</field>
+			</record>
+
+  		<!--Independent Meetings List View-->
+  		<record model="ir.ui.view" id="independent_meetings_tree">
+  			<field name="name">independentmeetings.tree</field>
+  			<field name="model">sparkit.independentmeeting</field>
+  			<field name="arch" type="xml">
+  				<tree string="Independent Meetings" editable="bottom" default_order="date desc">
+  					<field name="community_id" readonly="1"/>
+  					<field name="date"/>
+  					<field name="attendance"/>
+  					<field name="duration"/>
+  					<field name="description"/>  					
+  				</tree>
+  			</field>
+  		</record>
+
+  		<!--Ind Meeting Form Actions-->
+  		<record model="ir.actions.act_window" id="independent_meeting_list_action">
+  			<field name="name">Independent Meetings</field>
+  			<field name="res_model">sparkit.independentmeeting</field>
+  			<field name="view_type">form</field>
+  			<field name="view_mode">tree,form</field>
+  			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">Create the first groups!</p>
+  			</field>
+  		</record>
+
+    </data>
+</odoo>

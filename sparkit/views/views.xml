@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+
+        <template id="assets_backend" name="custom bar assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+              <script type="text/javascript" src="/sparkit/static/src/js/facilitator_dashboard.js"></script>
+              <link rel="stylesheet" href="/sparkit/static/src/less/sparkit.less"/>
+              <link rel="stylesheet" href="/sparkit/static/src/css/facilitator_dashboard.css"/>
+            </xpath>
+        </template>
+
+
+        <!-- Custom Favicon-->
+        <template id="sparkit_favicon" inherit_id="web.layout">
+    		    <xpath expr="//head//link" position="inside">
+        		    <link rel="shortcut icon" href="/sparkit/static/src/img/favicon.ico" type="image/x-icon"/>
+		   	</xpath>
+		</template>
+
+    </data>
+</odoo>

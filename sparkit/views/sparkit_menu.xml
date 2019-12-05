@@ -1,0 +1,179 @@
+<odoo>
+	<data>
+		
+		<!-- Top menu item -->
+		<menuitem id="sparkit.menu_root" name="Home" sequence="0"/>
+
+				<record id="act_testing_dashboard_two" model="ir.actions.client">
+					<field name="name">Management Dashboard</field>
+					<field name="tag">sparkit.managementhome</field>
+				</record>
+
+				<menuitem id="sparkit_testing_dashboard_two" name="Management Dashboard"
+						groups="sparkit.management_homepage"
+						action="act_testing_dashboard_two" 
+						parent="sparkit.menu_root" sequence="1"/>
+
+				<record id="act_testing_dashboard_three" model="ir.actions.client">
+					<field name="name">ACA Dashboard</field>
+					<field name="tag">sparkit.acahome</field>
+				</record>
+
+				<menuitem id="sparkit_testing_dashboard_three" name="ACA Dashboard"
+						groups="sparkit.aca_homepage"
+						action="act_testing_dashboard_three" 
+						parent="sparkit.menu_root" sequence="2"/>
+
+				<record id="act_testing_dashboard" model="ir.actions.client">
+					<field name="name">Facilitator Dashboard</field>
+					<field name="tag">sparkit.facilitatordashboard</field>
+				</record>
+
+				<menuitem id="sparkit_testing_dashboard" name="Facilitator Dashboard"
+						groups="sparkit.facilitator"
+						action="act_testing_dashboard" 
+						parent="sparkit.menu_root" sequence="3"/>
+
+
+  			<!--Communities Menu-->
+  			<menuitem id="main_all_communities_menu" name="Communities"/>
+  			<!-- All Communities-->
+	 			<menuitem id="all_communities_menu" name="Communities" sequence="1"
+          parent="main_all_communities_menu"/>
+				<menuitem id="my_communities_menu" name="My Communities" sequence="1"
+					parent="all_communities_menu" action="my_communities_list_action"/>
+        <menuitem id="all_communities_list_menu" name="All Communities"
+        	parent="all_communities_menu" action="community_list_action"/>
+				<menuitem id="partnered_communities" name="Partnered" sequence="2"
+					parent="main_all_communities_menu"/>
+
+				<!--Community Configuration Menu-->
+				<menuitem id="community_configuration" name="Community Configuration" sequence="3"
+					parent="main_all_communities_menu" groups="sparkit.global"/>
+				<menuitem id="workflow_config_list_menu" name="Workflow" sequence="1"
+					parent="community_configuration" action="workflow_configuration_list_action"/>
+				<menuitem id="countries_list_menu" name="Countries"
+					parent="community_configuration" action="base.action_country"/>
+				<menuitem id="special_cases_list_menu" name="Special Cases"
+					parent="community_configuration" action="special_cases_list_action"/>
+
+
+        <!-- Monitoring Forms Menu-->
+    		<menuitem id="top_visit_reports_menu" name="Monitoring Forms"/>
+  			<!-- Visit Reports -->
+        <menuitem id="main_visit_reports_menu" name="Visit Reports"
+          parent="top_visit_reports_menu" sequence="1"/>
+				<menuitem id="all_visit_reports" name="All" action="visit_report_list_action"
+					parent="main_visit_reports_menu" sequence="1"/>
+    		<!-- M&E Forms-->
+        <menuitem id="me_forms" name="M&#38;E Forms" parent="top_visit_reports_menu"
+        	sequence="2"/>
+      			<menuitem id="oca_form" name="OCAs" parent="me_forms"
+        		action="oca_list_action"/>
+      			<menuitem id="programreview_form" name="Program Reviews" parent="me_forms"
+        		action="programreview_list_action"/>
+
+        <!-- Other Forms-->
+        <menuitem id="other_forms" name="Other Forms" parent="top_visit_reports_menu"
+        	sequence="3"/>
+    		<menuitem id="transition_strategy_menu" name="Transition Strategies"
+          	parent="other_forms" action="transition_strategy_list_action"/>
+			<menuitem id="indmtgs_menu" name="Independent Meetings"
+        	parent="other_forms"
+        	action="independent_meeting_list_action"/>		
+
+		<!--Configuration View-->
+        <menuitem id="main_vrfs_configuration_menu" name="Configuration"
+          parent="top_visit_reports_menu" sequence="4" groups="sparkit.global"/>
+	 			<menuitem id="grouptracking_menu" name="Group Tracking"
+          		parent="main_vrfs_configuration_menu" action="grouptracking_list_action"
+          		sequence="1"/>
+				<menuitem id="missedmeetings_menu" name="Missed Meeting Reasons"
+				parent="main_vrfs_configuration_menu" action="missedmeetingreason_list_action"
+				sequence="1"/>
+	 			<menuitem id="fcap_map_menu" name="FCAP Map"
+	          	parent="main_vrfs_configuration_menu" action="fcap_map_list_action"
+	          	sequence="2"/>
+	        	<menuitem id="biggestconcern_menu" name="Biggest Concern"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="biggestconcerncategory_list_action"/>
+	        	<menuitem id="biggestconcernsubcategory_menu" name="Biggest Concern Categories"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="biggestconcernsubcategory_list_action"/>
+	        	<menuitem id="communalprojects_menu" name="Communal Projects"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="communalprojects_list_action"/>
+	        	<menuitem id="householdcontribution_menu" name="Household Contribution"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="householdcontribution_list_action"/>
+	        	<menuitem id="leadershipresponsibilities_menu" name="Leadership Responsibilities"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="leadershipresponsibilities_list_action"/>
+	        	<menuitem id="savingsmethods_menu" name="Savings Methods"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="savingsmethods_list_action"/>
+	        	<menuitem id="crosssectoritem_menu" name="Cross Sector Item"
+	        	parent="main_vrfs_configuration_menu"
+	        	action="crosssectoritem_list_action"/>
+	        	
+				<!--PROJECTS MENU-->
+				<menuitem id="top_community_projects_menu" name="Projects"/>
+
+
+  			<!-- Spark Projects-->
+        <menuitem id="main_spark_projects_menu" name="Projects"
+        	parent="top_community_projects_menu" sequence="1"/>
+        <menuitem id="spark_projects_menu" name="Grant Projects"
+        	parent="main_spark_projects_menu" action="spark_project_list_action_default"/>
+  			<menuitem id="independent_projects_menu" name="Independent Projects"
+        	parent="main_spark_projects_menu" action="independent_projects_list_action"/>
+        <menuitem id="savings_groups_menu" name="Savings Groups"
+        	parent="main_spark_projects_menu" action="savings_groups_list_action_default"/>
+				<menuitem id="main_projects_configuration_menu" name="Configuration"
+          parent="top_community_projects_menu" sequence="2" groups="sparkit.f_a_user"/>
+				<menuitem id="currency_config_menu" name="Currencies"
+					parent="main_projects_configuration_menu" action="base.action_currency_form"/>
+
+				<!-- Partnerships Menu-->
+				<menuitem id="advocacy_menu" name="Advocacy"
+					parent="top_community_projects_menu" sequence="3"/>
+				<menuitem id="advocacy_partnerships" name="Advocacy Partnerships"
+					parent="advocacy_menu"
+					sequence="3" action="partnerships_list_action"/>
+
+
+				<!-- Hiding Proposal For Now
+				<menuitem id="proposals_menu" name="Proposals"
+					parent="top_community_projects" sequence="2"/>
+				<menuitem id="proposals_action_menu" name="Proposals"
+					parent="proposals_menu" action="community_proposal_list_action"/>-->
+
+
+
+				<!--Projects Configuration View-->
+        <menuitem id="main_projects_configuration_menu" name="Configuration"
+            parent="top_community_projects_menu" sequence="4" groups="sparkit.global"/>
+	 			<menuitem id="project_categories_config_menu" name="Project Categories"
+            parent="main_projects_configuration_menu"
+            action="project_categories_list_action" sequence="2"/>
+        <menuitem id="budget_items_config_menu" name="Budget Items"
+        	parent="main_projects_configuration_menu" action="budget_items_list_action"
+        	sequence="1"/>
+				<menuitem id="budget_line_items_import" action="unique_budget_items_list_action"
+					parent="main_projects_configuration_menu" name="Project Line Items"/>
+				<menuitem id="transaction_items_import" action="transactions_list_action"
+					parent="main_projects_configuration_menu" name="Transacton Line Items"/>
+				<menuitem id="disbursal_requests_import" action="disbursalrequests_list_action"
+					parent="main_projects_configuration_menu" name="Disbursal Requests Import"/>
+				<menuitem id="disbursal_import" action="disbursals_list_action"
+					parent="main_projects_configuration_menu" name="Disbursals Import"/>
+				<menuitem id="savings_group_updates_import" action="savings_groups_updates_list_action_default"
+						parent="main_projects_configuration_menu" name="SG Updates Import"/>
+				<menuitem id="ind_projects_updates_import" action="independent_projects_updates_list_action"
+						parent="main_projects_configuration_menu" name="Ind. Projects Import"/>
+				<menuitem id="partnership_updates_import" action="partnership_updates_list_action_default"
+						parent="main_projects_configuration_menu" name="Partnerships Import"/>
+
+
+    </data>
+</odoo>

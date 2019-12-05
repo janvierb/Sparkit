@@ -1,0 +1,800 @@
+//Colors
+
+@spark-yellow:      #FAB833;
+@spark-dark-blue:   #2362A1;
+@spark-light-blue:  #76ACDC;
+@spark-red:         #ED675F;
+@spark-white:      #FFFFFF;
+
+@sf-gray-blue:      #F7F9FB;
+
+@dark-blue:         #556990;
+@darker-blue:       #16325C; 
+
+@gray-light:        #fff;
+@gray:              #777;
+@gray-dark:         #333;
+
+
+//Font Families
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/sparkit/static/src/fonts/Helvetica-neue/HelveticaNeue-Medium-500.otf') format('typeface');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/sparkit/static/src/fontawesome/fonts/fontawesome-webfont.eot?v=4.6.3');
+  src: url('/sparkit/static/src/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//Body Text
+body {
+  color:  @darker-blue;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+//Hover Text
+
+a {
+    color: @spark-yellow;
+}
+
+a:hover {
+    color: darken(@spark-yellow, 13%);
+    text-decoration: underline;
+}
+
+
+// ----------------------
+// Navbar (top bar)
+// ----------------------
+
+@navbar-default-color:                  @spark-yellow;
+@navbar-default-bg:                     @darker-blue;
+@navbar-default-border:                 darken(@navbar-default-bg, 6.5%);
+
+@navbar-default-link-color:             @spark-yellow;
+@navbar-default-link-hover-color:       @spark-yellow;
+@navbar-default-link-hover-bg:          darken(@spark-yellow, 15%);
+@navbar-default-link-active-color:      @spark-yellow;
+@navbar-default-link-active-bg:         darken(@spark-yellow, 10%);
+
+@navbar-inverse-color:                  @spark-yellow;
+@navbar-inverse-bg:                     @darker-blue;
+@navbar-inverse-border:                 darken(@navbar-inverse-bg, 10%);
+
+@navbar-inverse-link-color:             @gray-lighter;
+@navbar-inverse-link-hover-color:       #fff;
+@navbar-inverse-link-active-color:      #fff;
+@navbar-inverse-link-hover-bg:          @spark-yellow;
+@navbar-inverse-link-active-bg:         lighten(@navbar-inverse-bg, 25%);
+
+.ul_spark_logo {
+    margin: 5px !important;
+    margin-left: -30px !important;
+    list-style: outside none none;
+    list-style-type: none;
+    list-style-image: none;
+    list-style-position: outside;
+}
+
+#oe_main_menu_navbar {
+    .box-shadow(0px 0px 5px #999);
+    border: none;
+}
+
+.navbar-nav {
+    li {
+        a, button {
+            font-size: 13.5px !important;
+            padding: 5px 8px !important;
+            margin-top: 0 !important;
+            margin-bottom: -2px !important;
+            line-height: 30px !important;
+        }
+    }
+    .dropdown-menu {
+        li {
+            a, button {
+                padding: 4px 10px !important;
+                font-size: 14px !important;                
+			     }
+        }
+    }
+}
+
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #16325c !important;
+}
+
+.navbar-nav .dropdown-menu li a:hover, .navbar-nav .dropdown-menu li button:hover {
+  background-color: #2f6ac3 !important;
+  color: #fff;
+}
+
+.navbar-nav .dropdown-menu li.active a, .navbar-nav .dropdown-menu li.active button:hover {
+  color: #fff;
+  background-color: #2f6ac3 !important;
+}
+
+.navbar-nav .open .dropdown-menu > li > a {
+  background-color: #fff;
+  //color: #ffffff !important;
+}
+
+
+//-----------------------
+//     Buttons
+//-----------------------
+
+@btn-default-color:              #fff;
+@btn-default-bg:                 lighten(@darker-blue, 25%);
+@btn-default-border:             lighten(@darker-blue, 25%);
+@btn-default-bg-hover:           @darker-blue;
+
+@btn-primary-color:              #fff;
+@btn-primary-bg:                 @spark-yellow;
+@btn-primary-border:             @spark-yellow;
+
+@btn-success-color:              @btn-default-color;
+@btn-success-bg:                 @spark-light-blue;
+@btn-success-border:             @btn-success-bg;
+
+@btn-info-color:                 @btn-default-color;
+@btn-info-bg:                    @spark-dark-blue;
+@btn-info-border:                @btn-info-bg;
+
+/*@btn-warning-color:              @btn-default-color;
+@btn-warning-bg:                 @brand-warning;
+@btn-warning-border:             @btn-warning-bg;
+
+@btn-danger-color:               @btn-default-color;
+@btn-danger-bg:                  @brand-danger;
+@btn-danger-border:              @btn-danger-bg;*/
+
+
+
+//-----------------------
+//     Control Panel
+//-----------------------
+.oe-control-panel {
+    margin-bottom: 0px;
+    background-color: #fff;
+}
+
+.oe-control-panel .oe-view-title {
+    background-color: #fff;
+    font-size: 20px;
+    color: #1F497D !important;
+    font-family: 'Helvetica Neue';
+}
+
+//-----------------------
+//     Footer
+//-----------------------
+.oe-view-manager-content {
+    background-color: #fff;
+}
+
+//-----------------------
+//     Left Bar
+//-----------------------
+.oe_leftbar {
+  background:     #fff none repeat scroll 0 0 !important;
+  width:          200px;
+  color:          @gray-light;
+  margin-left:    10px;
+  margin-top:     90px;
+  border:         0px !important;
+}
+
+.oe_logo {
+  display: none;
+}
+
+.oe_secondary_menu {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin-right: 20px !important;
+  background-color:   @darker-blue;
+}
+
+.oe_secondary_menu_section {
+  margin-top:     10px !important;
+  color:          @spark-yellow !important;
+  font-size:      18px;
+  font-weight:    50;
+}
+
+.oe_secondary_submenu {
+  line-height:    1.3em;
+  padding:        0px !important;
+}
+
+.oe_menu_leaf {
+  font-size:      13px;
+  color:          @spark-white; //@spark-dark-blue;
+}
+
+.oe_menu_text {
+  //color:          @spark-yellow; 
+}
+
+.nav-pills > li > a {
+  margin: 0px !important;
+  color:  @gray-lighter;
+}
+
+.nav-pills > li.active > a {
+  background-color:   lighten(@darker-blue, 25%) !important;
+  color:              #fff;
+  border-radius:      0;
+}
+
+.nav-pills > li.active::after {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  margin-top: -28px;
+  margin-left: 180px;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 14px solid lighten(@darker-blue, 25%);
+  content: "";
+}
+
+.nav-pills > li > a:hover {
+  background-color:   @spark-yellow !important;
+  color:              #fff;
+  border-radius:      0;
+}
+
+.nav-pills > li:hover::after {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  margin-top: -28px;
+  margin-left: 180px;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 14px solid @spark-yellow;
+  content: "";
+}
+
+.oe_leftbar .o_footer { //Removes Odoo Branding
+  width: 0px;
+  height: 0px;
+}
+
+.o_sub_menu_footer {
+  width: 0px;
+  height: 0px;
+}
+
+.o_web_client > .o_main .o_sub_menu .o_sub_menu_content .oe_secondary_submenu > li:not(.active) > a {
+  background-color:   @darker-blue !important; 
+  color: wheat;
+}
+
+.o_web_client > .o_main .o_sub_menu .o_sub_menu_content .oe_secondary_submenu > li.active > a { 
+ background-color:   @darker-blue !important;
+}
+
+
+//-----------------------
+//     Tooltips
+//-----------------------
+@tooltip-color:               #fff;
+@tooltip-bg:                  lighten(@darker-blue, 15%);
+@tooltip-opacity:             1;
+
+
+.oe_form_label_help:before{
+  font-family: 'FontAwesome';
+  content: "\f059";
+  color: @gray-light;
+  position: relative;
+}
+
+.oe_form_label_help:hover:before{
+  color: darken(@dark-blue, 15%);
+}
+
+
+//-----------------------
+//     Form Viewing
+//-----------------------
+
+.o_form_sheet_width {
+    max-width: 100%;
+    background-image: none !important;
+    background-color: #fff !important;
+}
+
+.o_form_sheet {
+  max-width: 1200px !important;
+}
+
+.o_form_sheetbg {
+  padding: 0px 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.o_form_sheet_bg {
+  padding: 0px 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.o_application .o_form_sheet {
+  border: 0px;
+  box-shadow: 0px 0px 0px 0px !important;
+}
+
+.o_horizontal_separator {
+  color: @spark-dark-blue;
+  border: 0px;
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+.o_form td.o_form_group_cell_label {
+    border: 0px;
+}
+
+.o_form_group_row {
+  border-bottom: 1px solid @gray-lighter;
+}
+
+.o_form_group_row:hover { 
+  border-bottom-color: darken(@gray-lighter, 7.5%);
+}
+
+.o_form_view .o_group {
+  padding: 0 5px 0 20px;
+}
+
+.o_form_view .o_group.o_inner_group > tbody > tr > td.o_td_label {
+  padding-top:        7px;
+  border-bottom-color: 2px darken(@gray-lighter, 7.5%);
+}
+
+.o_form_view .o_group .o_td_label + td {
+  padding-top:        7px;
+  border-bottom-color: 2px darken(@gray-lighter, 7.5%);
+} 
+
+.o_form td.o_form_group_cell_label label {
+    display:        block;
+    text-align:     right;
+    white-space:    normal !important;
+    padding-left:   10px;
+    width:          200px;
+    color:          #556990;
+    font-size:      12px;
+    padding:        2px;
+    font-weight:    100 !important;
+}
+
+.o_form_field {
+  color: @darker-blue !important;
+}
+
+.no_style {
+    border-bottom: 2px solid white;
+    padding: 0 5px 0 20px;
+}
+
+.checklist {
+  border: 1px solid @spark-yellow !important;
+  border-bottom: 1px solid @spark-yellow !important;
+}
+
+.checklist > tr > td {
+  border: none;
+}
+
+
+.checklist_header {
+  color: @spark-dark-blue;
+  width: 250px;
+}
+
+.checklist_header:before {
+  font-family: 'FontAwesome';
+  content: "\f046";
+  padding-right: 2px;
+  color: @gray-light;
+  position: relative;
+}
+
+.o_mail_user_status {
+    &.o_user_online {
+        color: green;
+    }
+}
+
+
+
+//-----------------------
+//  Form Inputs/Editing
+// ----------------------
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: @spark-light-blue;
+  box-shadow: 0 0 4px @spark-light-blue;
+  outline: 1px @spark-light-blue;
+  color: @darker-blue;
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  border-color: 1px solid @spark-light-blue !important;
+  outline: 1px @spark-light-blue !important;
+  color: @darker-blue;
+}
+
+.oe_form .oe_form_required input:not([disabled]):not([readonly]), .oe_form .oe_form_required select:not([disabled]):not([readonly]), .oe_form .oe_form_required textarea:not([disabled]):not([readonly]) {
+    background-color: #fff !important;
+    border: 1px solid #ED675F;
+}
+
+.oe_form_editable .oe_list_editable .oe_list_content td.oe_readonly {
+    background-color: @sf-gray-blue;
+}
+
+.o_external_button { 
+  color: #fab833 !important;
+  background-color: #fff;
+}
+.oe_form_field_many2one .oe_m2o_cm_button {
+    color: @spark-yellow;
+}
+
+.ui-menu .ui-state-focus, .ui-menu .ui-state-active {
+  background: @spark-yellow !important;
+  border: 1px @spark-yellow !important;
+}
+
+.oe_list.oe_list_editable.oe_editing .oe_form_field input, .oe_list.oe_list_editable.oe_editing .oe_form_field textarea {
+    border: 1px solid @spark-light-blue;
+    font-size: 12px;
+}
+
+.oe_form_editable .oe_list_editable .oe_list_content td.oe_required {
+  background-color: lighten(@spark-red, 20%) !important;
+}
+
+.o_input_file {
+  color: #333 !important;
+}
+
+//-----------------------
+//  Tables
+// ----------------------
+
+.oe_list_content > tbody > tr:nth-child(odd) {
+    background-color: #fff !important;
+    background-image: none;
+}
+
+.oe_list_content > tbody > tr {
+    color: @darker-blue;
+    font-size: 13px;
+    height: 35px;
+}
+
+.oe_list_content > tbody > tr:hover {
+    background-color: #F1F4F8 !important;
+    color: @darker-blue;
+    background-image: none;
+}
+
+.oe_list_content > tbody > tr > td.oe_list_field_cell  {
+    padding: 12px !important;
+}
+
+.oe_list_content > thead {
+    border: 0px !important;
+    background: darken(@sf-gray-blue, 2%);
+    color: @darker-blue;
+    font-weight: bold;
+    height: 10px !important;
+}
+
+.oe_list_content th.oe_sortable:hover, .oe_list_content th.oe_sortable:hover div {
+  color: @spark-yellow;
+}
+
+.oe_list_content th.oe_sortable div {
+    min-height: 25px;
+    padding: 5px !important;
+}
+
+.oe_list_content > tfoot {
+    border-top: 1px solid darken(#cacaca, 2%);
+    border-bottom: 0px;
+    background: #fff;
+    padding: 0px !important;
+}
+
+thead th {
+  border-left: 0px !important;
+  font-weight: 300 !important;
+  font-size: 1em;
+}
+
+//group header
+.oe_list .oe_list_content .oe_group_header {
+  background-color: #fff;
+  background-image: none;
+}
+
+// --------------------------
+//Search views - facet (filter)
+// ---------------------------
+// facet
+.oe_searchview .oe_searchview_facets .oe_searchview_facet .oe_facet_values {
+  background: #fff;
+  color: @darker-blue;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+}
+
+.oe_searchview .oe_searchview_facets .oe_searchview_facet .oe_facet_remove {
+  background: #fff;
+  color: @spark-yellow;
+}
+
+.oe_searchview .oe_searchview_facets .oe_searchview_facet .oe_facet_remove:hover {
+  font-weight: 600;
+  color: darken(@spark-yellow, 13%);
+  background: #fff;
+}
+
+.oe_tag {
+  border: 0px;
+  border-bottom: 1px solid @spark-dark-blue;
+  background: #fff;
+  color: @darker-blue;
+}
+
+
+.oe_searchview .oe_searchview_facets .oe_searchview_facet .label {
+  color: @darker-blue !important;
+  background-color: #fff !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+
+//Autocomplete
+.oe_searchview .oe-autocomplete ul li.oe-selection-focus {
+  background: @sf-gray-blue;
+  color: @darker-blue;
+}
+
+.oe_searchview .oe-autocomplete  {
+  background-color: #fff;
+  color: @darker-blue;
+}
+
+//------------------------
+// Odoo Nav Tabs
+//------------------------
+.nav-tabs {
+  background-color: @darker-blue;
+}
+
+.tab-content {
+  background-color: #fff;
+  padding-top:  10px;
+  border: 0px;
+}
+
+.nav-tabs > li > a {
+  border:    0px;
+  border-radius: 0;
+  color:      @gray-lighter;
+  padding-top:  12px;
+  padding-bottom: 12px;
+  margin: 0px;
+}
+
+.nav-tabs > li.active > a:focus{
+  background-color: lighten(@darker-blue, 25%);
+  color: #fff;
+  border-radius: 0;
+  padding-bottom: 9px;
+  border: 0px;
+}
+
+.nav-tabs > li.active > a {
+  background-color: lighten(@darker-blue, 25%);
+  color: #fff;
+  border-radius: 0;
+  padding-bottom: 9px;
+  border: 0px;
+}
+
+.nav-tabs > li.active > a:hover {
+  background-color: @spark-yellow;
+  border-radius: 0;
+  color: #fff;
+  padding-bottom: 9px;
+  border: 0px;
+}
+
+.nav-tabs > li > a:hover {
+  border-radius: 0;
+  background-color: @spark-yellow;
+  color: #fff;
+  padding-bottom: 9px;
+  border: 0px;
+}
+
+//------------------------
+//   Breadcrumbs
+//------------------------
+.breadcrumb a {
+    color: @spark-yellow;
+}
+
+.breadcrumb a:hover {
+    color: darken(@spark-yellow, 10%)
+}
+
+.breadcrumb > active {
+    color:  @spark-dark-blue !important;
+}
+
+.breadcrumb > li+li:before {
+    content: "\276F\00a0";
+}
+
+//------------------------
+// Odoo Loading Bar
+//------------------------
+.o_web_client .oe_loading {
+    background-color:   @spark-yellow !important;
+    border-color:       darken(@spark-yellow, 10%);
+    width:              100px;
+    opacity:            .9;
+}
+
+//-----------------------
+// Calendar
+//------------------------
+.ui-datepicker-title {
+  color: @darker-blue;
+  font-family: Helvetica Neue;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+  color: #fff !important;
+}
+
+.ui-datepicker-calendar {
+  color: @darker-blue;
+  font-family: Helvetica Neue;
+}
+
+.ui-datepicker-calendar > thead > tr > th {
+  color: @darker-blue;
+  text-align: center !important;
+}
+
+//-----------------------
+// Workflow
+//------------------------
+.o_statusbar_buttons {
+  background-image: none !important;
+  background-color: darken(@sf-gray-blue, 2%) !important;
+  border-bottom: 1px solid @darker-blue;  
+}
+.btn-default.disabled {
+  //background-color: #f9f9f9 !important;
+  font-size: 12px !important;
+}
+.o_arrow_button.btn-primary.disabled {
+  color: #2f6ac3 !important;
+  font-size: 13px !important;
+}
+/*background-color: darken(@sf-gray-blue, 2%) !important; */
+
+ul.oe_form_status {
+  background-color: darken(@sf-gray-blue, 2%);  
+}
+
+ul.oe_form_status li:first-child > .label, ul.oe_form_status_clickable li:first-child > .label {
+  border-left: 0px !important;
+}
+
+ul.oe_form_status li, ul.oe_form_status_clickable li {
+  margin: 0px !important;
+  padding: 0px !important;
+  padding-left: 0px !important;
+  display: inline !important;
+  background-image: none !important;
+  background-color: darken(@sf-gray-blue, 2%);
+}
+
+.oe_form_status > li+li:before {
+    content: "\276F\00a0";
+    color: @spark-dark-blue;
+}
+
+ul.oe_form_status li > .label, ul.oe_form_status_clickable li > .label {
+  padding-left: 5px !important;
+  color: @gray-dark;
+  font-size: 12px;
+  background-color: none;
+  text-shadow: none !important;
+}
+
+ul.oe_form_status li.oe_active, ul.oe_form_status_clickable li.oe_active {
+  background-color: darken(@sf-gray-blue, 2%)  !important;
+}
+
+ul.oe_form_status li.oe_active > .label, ul.oe_form_status_clickable li.oe_active > .label {
+  color: lighten(@darker-blue, 25%);
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: none !important;
+}
+
+.arrow {
+ display: none !important;
+}
+
+// Fixing Notification Manager
+
+.o_notification_manager {
+  z-index: 1000;
+}
+
+
+// Making 'Edit' Button Yellow
+.oe_form_button_edit {
+  background-color: @spark-yellow;
+  border: 1px solid @spark-yellow;
+}
+
+.oe_form_button_edit:hover {
+  background-color: darken(@spark-yellow, 10%);
+  border: 1px solid darken(@spark-yellow, 10%);
+}

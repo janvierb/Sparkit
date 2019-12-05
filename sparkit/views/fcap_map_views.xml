@@ -1,0 +1,90 @@
+<odoo>
+	<data>
+  		<!-- FCAP Map Form View -->
+  		<record model="ir.ui.view" id="fcap_map_view">
+  			<field name="name">fcapmap.form</field>
+  			<field name="model">sparkit.fcapmap</field>
+  			<field name="arch" type="xml">
+  				<form string="FCAP Map" create="false">
+  					<sheet>
+  						<group colspan="1" col="2">
+  							<field name="name"/>
+  						</group>
+  						<seperator/>
+								<field name="step_ids"/>
+							<seperator/>
+  					</sheet>
+  				</form>
+  			</field>
+  		</record>
+
+  		<!--FCAP Map List View -->
+  		<record model="ir.ui.view" id="fcap_map_tree">
+  			<field name="name">fcapmap.tree</field>
+  			<field name="model">sparkit.fcapmap</field>
+  			<field name="arch" type="xml">
+  				<tree string="FCAP Map" create="false">
+  					<field name="name"/>
+  				</tree>
+  			</field>
+  		</record>
+
+  		<!--FCAP Map Report Form Actions-->
+  		<record model="ir.actions.act_window" id="fcap_map_list_action">
+  			<field name="name">FCAP Map</field>
+  			<field name="res_model">sparkit.fcapmap</field>
+  			<field name="view_type">form</field>
+  			<field name="view_mode">tree,form</field>
+  			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">Create the first FCAP Map!</p>
+  			</field>
+  		</record>
+
+			<!-- FCAP Step Form View -->
+			<record model="ir.ui.view" id="fcap_step_view">
+				<field name="name">fcapstep.form</field>
+				<field name="model">sparkit.fcapstep</field>
+				<field name="arch" type="xml">
+					<form string="FCAP Map" create="false">
+						<sheet>
+							<group colspan="1" col="2">
+								<field name="name"/>
+								<field name="min_duration"/>
+								<field name="step_number"/>
+								<field name="activity_ids"/>
+							</group>
+						</sheet>
+					</form>
+				</field>
+			</record>
+
+			<!--FCAP Step List View -->
+			<record model="ir.ui.view" id="fcap_step_tree">
+				<field name="name">fcapstep.tree</field>
+				<field name="model">sparkit.fcapstep</field>
+				<field name="arch" type="xml">
+					<tree string="Steps" create="false">
+						<field name="name"/>
+						<field name="min_duration"/>
+						<field name="step_number"/>
+						<field name="activity_ids"/>
+					</tree>
+				</field>
+			</record>
+
+
+			<!--FCAP Activity List View -->
+			<record model="ir.ui.view" id="fcap_activities_tree">
+				<field name="name">fcapactivities.tree</field>
+				<field name="model">sparkit.fcapactivity</field>
+				<field name="arch" type="xml">
+					<tree string="Steps" editable="bottom">
+						<field name="step_id"/>
+						<field name="name"/>
+					</tree>
+				</field>
+			</record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,173 @@
+<odoo>
+	<data>
+  		<!--Savings Group Form View -->
+  		<record model="ir.ui.view" id="savings_groups_form_view">
+  			<field name="name">savingsgroups.form</field>
+  			<field name="model">sparkit.savingsgroup</field>
+  			<field name="arch" type="xml">
+  				<form string="Savings Groups" create="false">
+  					<sheet>
+  						<group colspan="4" col="4" class="no_style">
+  							<group colspan="2" col="2">
+									<field name="name" invisible="1"/>
+  								<field name="community_id"
+  									options="{'no_create': True}"/>
+  								<field name="is_existing"/>
+  								<field name="start_date"/>
+  								<field name="end_date"/>
+									<field name="description"/>
+									<field name="last_updated" invisilbe="1"/>
+  							</group>
+  							<group colspan="2" col="2">
+									<field name="uses_households"/>
+  								<field name="number_hh_at_start"/>
+  								<field name="contribution_amount"/>
+  								<field name="contribution_frequency"/>
+  								<field name="latest_id" invisible="1"/>
+  								<field name="amount_in_bank"/>
+  								<field name="amount_in_circulation"/>
+  								<field name="total_saved"/>
+  							</group>
+  						</group>
+  						<field name="savings_group_update_ids"
+								attrs="{'invisible': [('name', '=', False)]}"
+  							context="{'default_savings_group_id': active_id,
+  							'default_community_id': community_id}"/>
+  					</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers"/>
+							<field name="message_ids" widget="mail_thread"/>
+						</div>
+  				</form>
+  			</field>
+  		</record>
+
+  		<!--Savings Groups List View -->
+  		<record model="ir.ui.view" id="savings_groups_tree">
+  			<field name="name">savingsgroups.tree</field>
+  			<field name="model">sparkit.savingsgroup</field>
+  			<field name="arch" type="xml">
+  				<tree string="Savings Groups">
+  					<field name="total_saved"/>
+						<field name="number_hh"/>
+						<field name="last_updated"/>
+						<field name="contribution_frequency"/>
+  					<field name="start_date"/>
+  				</tree>
+  			</field>
+  		</record>
+
+			<!--Savings Groups List View -->
+			<record model="ir.ui.view" id="savings_groups_tree_default">
+				<field name="name">savingsgroups.tree.default</field>
+				<field name="model">sparkit.savingsgroup</field>
+				<field name="arch" type="xml">
+					<tree string="Savings Groups">
+						<field name="country_id"/>
+						<field name="community_number"/>
+						<field name="community_id"/>
+						<field name="start_date"/>
+					</tree>
+				</field>
+			</record>
+
+  		<!-- Savings Group Form Actions-->
+  		<record model="ir.actions.act_window" id="savings_groups_list_action">
+  			<field name="name">Savings Groups</field>
+  			<field name="res_model">sparkit.savingsgroup</field>
+  			<field name="view_type">form</field>
+  			<field name="view_mode">tree,form</field>
+				<field name="view_id" ref="savings_groups_tree"/>
+  			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+  				Create the first Savings Group!</p>
+  			</field>
+  		</record>
+
+			<!-- Savings Group Form Actions-->
+			<record model="ir.actions.act_window" id="savings_groups_list_action_default">
+				<field name="name">Savings Groups</field>
+				<field name="res_model">sparkit.savingsgroup</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+				<field name="view_id" ref="savings_groups_tree_default"/>
+				<field name="help" type="html">
+					<p class="oe_view_nocontent_create">
+					Create the first Savings Group!</p>
+				</field>
+			</record>
+
+			<!--Savings Group Search View-->
+			<record model="ir.ui.view" id="savings_groups_default_search">
+				<field name="name">savingsgroup.search</field>
+				<field name="model">sparkit.savingsgroup</field>
+				<field name="arch" type="xml">
+					<search string="Savings Group(s)">
+						<field name="community_id"/>
+						<field name="community_number"/>
+						<group expand="0" string="Group By">
+							<filter name="community_id" string="Community" context="{'group_by': 'community_id'}" help="Community"/>
+						</group>
+					</search>
+				</field>
+			</record>
+
+  		<!-- Savings Group Updates-->
+  		<record model="ir.ui.view" id="savings_group_updates_form_view">
+  			<field name="name">savingsgroupupdates.form</field>
+  			<field name="model">sparkit.savingsgroupupdate</field>
+  			<field name="arch" type="xml">
+  				<form string="Savings Group Updates" create="false">
+  					<sheet>
+  						<group colspan="4" col="4" class="no_style">
+  							<group colspan="2" col="2">
+									<field name="community_id" invisible="1"/>
+  								<field name="savings_group_id"
+										domain="[('community_id', '=', community_id)]"
+  									options="{'no_create': True}"/>
+  								<field name="date"/>
+									<field name="number_hh"/>
+  							</group>
+  							<group colspan="2" col="2">
+  								<field name="amount_in_bank"/>
+  								<field name="amount_in_circulation"/>
+									<field name="interest_earned"/>
+  							</group>
+  						</group>
+  					</sheet>
+  				</form>
+  			</field>
+  		</record>
+
+  		<!-- Savings Group Updates List View -->
+  		<record model="ir.ui.view" id="savings_group_updates_tree">
+  			<field name="name">savingsgroupupdates.tree</field>
+  			<field name="model">sparkit.savingsgroupupdate</field>
+  			<field name="arch" type="xml">
+  				<tree string="Savings Group Updates" editable="bottom">
+  					<field name="date"/>
+  					<field name="name" invisible="1"/>
+  					<field name="community_id" invisible="1"/>
+  					<field name="savings_group_id"
+							required="1"
+							domain="[('community_id', '=', community_id)]"/>
+  					<field name="amount_in_bank"/>
+  					<field name="amount_in_circulation"/>
+						<field name="interest_earned"/>
+						<field name="number_hh"/>
+						<field name="is_sustaining"/>
+  				</tree>
+  			</field>
+  		</record>
+
+			<!-- Savings Group  Updates Form Actions-->
+			<record model="ir.actions.act_window" id="savings_groups_updates_list_action_default">
+				<field name="name">Savings Groups Updates</field>
+				<field name="res_model">sparkit.savingsgroupupdate</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+				<field name="view_id" ref="savings_group_updates_tree"/>
+			</record>
+
+    </data>
+</odoo>
