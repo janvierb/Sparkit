@@ -33,8 +33,7 @@ class OngoingCommunityAssessment(models.Model):
 	#Background
 	community_member = fields.Char(string="Community Member")
 	age = fields.Integer(string="Age")
-	sex = fields.Selection([(0, 'Male'), (1, 'Female')], select=True,
-		string="Sex")
+	sex = fields.Selection(selection=[(0, 'Male'), (1, 'Female')], select=True, string="Sex")
 	household_size = fields.Integer(string="Household Size")
 	marital_status = fields.Selection([(1, 'Single'), (2, 'Married'), (3, 'Divorced'), (4, 'Widowed'), (5, 'Other')], string = "Marital Status")
 	household_head = fields.Selection([(0, 'No'), (1, 'Yes'), (99, "I don't know")], string = "Are you the head of your household?")
